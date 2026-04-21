@@ -1,5 +1,14 @@
 import streamlit as st
 from PIL import Image
+
+st.title("🧪 Blood Cell AI")
+st.write("Upload an image to analyze cells")
+
+uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png"])
+
+if uploaded_file is not None:
+    img = Image.open(uploaded_file)
+    st.image(img, caption="Uploaded Image")
 import torch
 import matplotlib.pyplot as plt
 
