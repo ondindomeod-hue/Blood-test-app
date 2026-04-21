@@ -1,14 +1,25 @@
 import streamlit as st
 from PIL import Image
+from ultralytics import YOLO
 
 st.title("🧪 Blood Cell AI")
 st.write("Upload an image to analyze cells")
+
+@st.cache_resource
+def load_model():
+    return YOLO("best.pt")   # ใช้โมเดลของเธอ
+
+model = load_model()
 
 uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png"])
 
 if uploaded_file is not None:
     img = Image.open(uploaded_file)
     st.image(img, caption="Uploaded Image")
+
+    results = model(img)
+
+    st.image(results[0].plot(), caption="Detection Result")
 import matplotlib.pyplot as plt
 
 # 🎨 ตั้งค่า
