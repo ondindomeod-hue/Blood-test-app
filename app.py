@@ -9,7 +9,6 @@ uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png"])
 if uploaded_file is not None:
     img = Image.open(uploaded_file)
     st.image(img, caption="Uploaded Image")
-import torch
 import matplotlib.pyplot as plt
 
 # 🎨 ตั้งค่า
